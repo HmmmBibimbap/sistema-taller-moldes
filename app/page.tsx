@@ -3,7 +3,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <header className="header">
         <div className="header-content">
-          <h1>Sistema de Órdenes de Trabajo</h1>
+          <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
           <p>Taller de Mantenimiento y Reparación de Moldes</p>
         </div>
       </header>
