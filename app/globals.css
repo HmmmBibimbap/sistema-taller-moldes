@@ -527,3 +527,47 @@ body {
 .dark-mode .orders-vertical-list::-webkit-scrollbar-thumb {
   background: var(--primary-color);
 }
+/* ===== MODO OSCURO ===== */
+
+/* Botón de modo oscuro */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  position: absolute;
+  right: 0;
+}
+
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Variables del modo oscuro */
+.dark-mode {
+  --gray-50: #0f0f0f;
+  --gray-100: #1a1a1a;
+  --gray-200: #2a2a2a;
+  --gray-300: #3a3a3a;
+  --gray-800: #e5e5e5;
+  --gray-900: #f5f5f5;
+}
+
+/* Aplicar modo oscuro */
+.dark-mode {
+  background-color: var(--gray-50);
+  color: var(--gray-800);
+}
+
+.dark-mode .metric-card-vertical,
+.dark-mode .category-column,
+.dark-mode .order-card,
+.dark-mode .sidebar-menu {
+  background-color: var(--gray-200);
+  border-color: var(--gray-300);
+  color: var(--gray-800);
+}
