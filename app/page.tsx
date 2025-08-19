@@ -4,21 +4,40 @@ export default function Dashboard() {
       <header className="header">
         <div className="header-content">
           <div className="header-left">
-            <span className="menu-icon">☰</span>
+            <button className="menu-toggle">☰</button>
             <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
           </div>
         </div>
       </header>
 
-      <nav className="navigation">
-        <a href="/" className="nav-link active">Dashboard</a>
-        <a href="/solicitar" className="nav-link">Solicitar</a>
-        <a href="/actualizar" className="nav-link">Actualizar</a>
-        <a href="/historial" className="nav-link">Historial</a>
+      {/* MENÚ LATERAL */}
+      <nav className="sidebar-menu">
+        <div className="menu-items">
+          <a href="/" className="menu-item active">
+            <span className="menu-icon">📊</span>
+            Dashboard
+          </a>
+          <a href="/solicitar" className="menu-item">
+            <span className="menu-icon">➕</span>
+            Solicitar
+          </a>
+          <a href="/actualizar" className="menu-item">
+            <span className="menu-icon">✏️</span>
+            Actualizar
+          </a>
+          <a href="/historial" className="menu-item">
+            <span className="menu-icon">📋</span>
+            Historial
+          </a>
+          <a href="/reportes" className="menu-item">
+            <span className="menu-icon">📈</span>
+            Reportes
+          </a>
+        </div>
       </nav>
 
       <main className="main-layout">
-        {/* SIDEBAR IZQUIERDO - MÉTRICAS VERTICALES */}
+        {/* SIDEBAR IZQUIERDO - MÉTRICAS VERTICALES (15%) */}
         <aside className="metrics-sidebar">
           <div className="metric-card-vertical pending">
             <div className="metric-icon">⏳</div>
@@ -53,7 +72,7 @@ export default function Dashboard() {
           </div>
         </aside>
 
-        {/* ÁREA PRINCIPAL - 4 COLUMNAS DE ÓRDENES */}
+        {/* ÁREA PRINCIPAL - 4 COLUMNAS DE ÓRDENES (80%) */}
         <section className="orders-main-area">
           <h2>Órdenes Activas</h2>
           
@@ -102,6 +121,19 @@ export default function Dashboard() {
                       <p><strong>Problema:</strong> Runner</p>
                       <p><strong>Técnico:</strong> Sin asignar</p>
                       <p><strong>Tiempo:</strong> 16h</p>
+                    </div>
+                  </div>
+
+                  <div className="order-card priority-high">
+                    <div className="order-header">
+                      <span className="order-number">2024-004</span>
+                      <span className="priority-badge high">Alta</span>
+                    </div>
+                    <div className="order-details">
+                      <p><strong>Molde:</strong> RW1017</p>
+                      <p><strong>Problema:</strong> Cavidad dañada</p>
+                      <p><strong>Técnico:</strong> Luis Escobar</p>
+                      <p><strong>Tiempo:</strong> 8h</p>
                     </div>
                   </div>
                 </div>
