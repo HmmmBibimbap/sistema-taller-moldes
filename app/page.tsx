@@ -51,19 +51,90 @@ export default function Dashboard() {
         </div>
 
         
-        <div className="orders-section">
-          <h2>Requerimientos abiertos</h2>
-          <div className="order-card priority-high">
-            <div className="order-header">
-              <span className="order-number">2024-001</span>
-              <span className="priority-badge high">Alta</span>
+<div className="orders-section">
+          <h2>Órdenes Activas</h2>
+          
+          {/* CORRECTIVOS 80 Y 210 TON */}
+          <div className="category-section">
+            <div className="category-header">
+              <h3>Correctivos 80 y 210 TON</h3>
+              <div className="carousel-controls">
+                <button className="carousel-btn prev">‹</button>
+                <button className="carousel-btn next">›</button>
+              </div>
             </div>
-            <div className="order-details">
-              <p><strong>Molde:</strong> RW1013</p>
-              <p><strong>Problema:</strong> Flash en cavidad</p>
+            <div className="carousel-container">
+              <div className="orders-carousel">
+                <div className="order-card priority-high">
+                  <div className="order-header">
+                    <span className="order-number">2024-001</span>
+                    <span className="priority-badge high">Alta</span>
+                  </div>
+                  <div className="order-details">
+                    <p><strong>Molde:</strong> RW1013</p>
+                    <p><strong>Problema:</strong> Flash en cavidad #3</p>
+                    <p><strong>Técnico:</strong> Juan Pérez</p>
+                    <p><strong>Tiempo:</strong> 95 horas</p>
+                  </div>
+                </div>
+
+                <div className="order-card priority-medium">
+                  <div className="order-header">
+                    <span className="order-number">2024-002</span>
+                    <span className="priority-badge medium">Media</span>
+                  </div>
+                  <div className="order-details">
+                    <p><strong>Molde:</strong> CI0515</p>
+                    <p><strong>Problema:</strong> Inserto movido</p>
+                    <p><strong>Técnico:</strong> Ana García</p>
+                    <p><strong>Tiempo:</strong> 4 horas</p>
+                  </div>
+                </div>
+
+                <div className="order-card priority-low">
+                  <div className="order-header">
+                    <span className="order-number">2024-003</span>
+                    <span className="priority-badge low">Baja</span>
+                  </div>
+                  <div className="order-details">
+                    <p><strong>Molde:</strong> RW0879</p>
+                    <p><strong>Problema:</strong> Problema con runner</p>
+                    <p><strong>Técnico:</strong> Sin asignar</p>
+                    <p><strong>Tiempo:</strong> 16 horas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CORRECTIVOS FM */}
+          <div className="category-section">
+            <div className="category-header">
+              <h3>Correctivos FM</h3>
+              <div className="carousel-controls">
+                <button className="carousel-btn prev">‹</button>
+                <button className="carousel-btn next">›</button>
+              </div>
+            </div>
+            <div className="carousel-container">
+              <div className="orders-carousel">
+                <div className="order-card priority-medium">
+                  <div className="order-header">
+                    <span className="order-number">2024-005</span>
+                    <span className="priority-badge medium">Media</span>
+                  </div>
+                  <div className="order-details">
+                    <p><strong>Molde:</strong> FM2581</p>
+                    <p><strong>Problema:</strong> Ajuste temperatura</p>
+                    <p><strong>Técnico:</strong> Misael García</p>
+                    <p><strong>Tiempo:</strong> 12 horas</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
       </main>
     </div>
   )
