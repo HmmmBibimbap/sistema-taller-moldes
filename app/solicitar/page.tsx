@@ -1,12 +1,36 @@
 'use client'
 import { useState } from 'react'
 
+// Tipos TypeScript
+type FormEvent = React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>
+
+interface MoldeData {
+  codigo: string
+  area: string
+  linea: string
+  descripcion: string
+}
+
+interface FormData {
+  requerimiento: string
+  molde: string
+  area: string
+  linea: string
+  descripcionMolde: string
+  tipoServicio: string
+  trabajoRealizar: string
+  descripcionTrabajo: string
+  ubicacionMolde: string
+  solicitante: string
+  piezaMuestra: string
+}
+
 export default function Solicitar() {
   const [darkMode, setDarkMode] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   
   // Estados del formulario
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     requerimiento: '2024-009', // Auto-generado
     molde: '',
     area: '',
@@ -21,21 +45,21 @@ export default function Solicitar() {
   })
 
   // Datos mock - después vendrán de la base de datos
-  const moldes = [
+  const moldes: MoldeData[] = [
     { codigo: 'RW1013', area: '80 TON', linea: 'SMS', descripcion: 'Molde de inyección principal' },
     { codigo: 'CI0515', area: '210 TON', linea: 'SMS', descripcion: 'Molde cavidades múltiples' },
     { codigo: 'FM2581', area: 'FM', linea: 'Factory Machines', descripcion: 'Molde especializado FM' },
     { codigo: 'RW0879', area: '80 TON', linea: 'Production', descripcion: 'Molde runner estándar' }
   ]
 
-  const tiposServicio = [
+  const tiposServicio: string[] = [
     'Correctivo',
     'Preventivo', 
     'Cambio de modelo',
     'Otro'
   ]
 
-  const trabajosCorrectivo = [
+  const trabajosCorrectivo: string[] = [
     'Flash en cavidad',
     'Inserto movido',
     'Problema con runner',
@@ -44,14 +68,14 @@ export default function Solicitar() {
     'Calibración'
   ]
 
-  const trabajosPreventivo = [
+  const trabajosPreventivo: string[] = [
     'Full Cleaning',
     'Mantenimiento programado',
     'Inspección general',
     'Cambio de refacciones'
   ]
 
-  const ubicaciones = [
+  const ubicaciones: string[] = [
     'Máquina 1 - 80 TON',
     'Máquina 2 - 80 TON', 
     'Máquina 3 - 210 TON',
@@ -61,7 +85,7 @@ export default function Solicitar() {
     'N/A: Molde afuera de taller'
   ]
 
-  const solicitantes = [
+  const solicitantes: string[] = [
     'Juan Pérez - Supervisor',
     'Ana García - Operador',
     'Luis Escobar - Técnico',
@@ -70,7 +94,7 @@ export default function Solicitar() {
   ]
 
   // Manejar cambio de molde (auto-llenar campos)
- const handleMoldeChange = (codigo: string) => {
+  const handleMoldeChange = (codigo: string) => {
     const moldeSeleccionado = moldes.find(m => m.codigo === codigo)
     if (moldeSeleccionado) {
       setFormData({
@@ -84,7 +108,7 @@ export default function Solicitar() {
   }
 
   // Obtener trabajos según tipo de servicio
-  const getTrabajosDisponibles = () => {
+  const getTrabajosDisponibles = (): string[] => {
     switch(formData.tipoServicio) {
       case 'Correctivo':
         return trabajosCorrectivo
@@ -114,7 +138,7 @@ export default function Solicitar() {
 
   // Validar y generar requerimiento
   const generarRequerimiento = () => {
-    const camposRequeridos = ['molde', 'tipoServicio', 'trabajoRealizar', 'descripcionTrabajo', 'ubicacionMolde', 'solicitante', 'piezaMuestra']
+    const camposRequeridos: (keyof FormData)[] = ['molde', 'tipoServicio', 'trabajoRealizar', 'descripcionTrabajo', 'ubicacionMolde', 'solicitante', 'piezaMuestra']
     const camposFaltantes = camposRequeridos.filter(campo => !formData[campo])
     
     if (camposFaltantes.length > 0) {
@@ -200,7 +224,7 @@ export default function Solicitar() {
               <label>Molde *</label>
               <select 
                 value={formData.molde}
-                onChange={(e) => handleMoldeChange(e.target.value)}
+                onChange={(e: FormEvent) => handleMoldeChange(e.target.value)}
                 className="form-select"
                 required
               >
@@ -251,7 +275,7 @@ export default function Solicitar() {
               <label>Tipo de Servicio *</label>
               <select 
                 value={formData.tipoServicio}
-                onChange={(e) => setFormData({...formData, tipoServicio: e.target.value, trabajoRealizar: ''})}
+                onChange={(e: FormEvent) => setFormData({...formData, tipoServicio: e.target.value, trabajoRealizar: ''})}
                 className="form-select"
                 required
               >
@@ -267,7 +291,7 @@ export default function Solicitar() {
               <label>Trabajo a realizar *</label>
               <select 
                 value={formData.trabajoRealizar}
-                onChange={(e) => setFormData({...formData, trabajoRealizar: e.target.value})}
+                onChange={(e: FormEvent) => setFormData({...formData, trabajoRealizar: e.target.value})}
                 className="form-select"
                 disabled={!formData.tipoServicio}
                 required
@@ -284,10 +308,10 @@ export default function Solicitar() {
               <label>Descripción del trabajo a realizar *</label>
               <textarea 
                 value={formData.descripcionTrabajo}
-                onChange={(e) => setFormData({...formData, descripcionTrabajo: e.target.value})}
+                onChange={(e: FormEvent) => setFormData({...formData, descripcionTrabajo: e.target.value})}
                 className="form-textarea"
                 placeholder="Escriba información detallada sobre el trabajo que está solicitando; incluir las cavidades o zonas del molde afectadas..."
-                rows="4"
+                rows={4}
                 required
               ></textarea>
             </div>
@@ -297,7 +321,7 @@ export default function Solicitar() {
               <label>¿A dónde debe ir el técnico a buscar el molde? *</label>
               <select 
                 value={formData.ubicacionMolde}
-                onChange={(e) => setFormData({...formData, ubicacionMolde: e.target.value})}
+                onChange={(e: FormEvent) => setFormData({...formData, ubicacionMolde: e.target.value})}
                 className="form-select"
                 required
               >
@@ -313,7 +337,7 @@ export default function Solicitar() {
               <label>Solicitante *</label>
               <select 
                 value={formData.solicitante}
-                onChange={(e) => setFormData({...formData, solicitante: e.target.value})}
+                onChange={(e: FormEvent) => setFormData({...formData, solicitante: e.target.value})}
                 className="form-select"
                 required
               >
@@ -329,7 +353,7 @@ export default function Solicitar() {
               <label>Pieza muestra *</label>
               <select 
                 value={formData.piezaMuestra}
-                onChange={(e) => setFormData({...formData, piezaMuestra: e.target.value})}
+                onChange={(e: FormEvent) => setFormData({...formData, piezaMuestra: e.target.value})}
                 className="form-select"
                 required
               >
