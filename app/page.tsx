@@ -59,10 +59,7 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Correctivos 80 y 210 TON</h3>
-                <div className="scroll-controls">
-                  <button className="scroll-btn up">▲</button>
-                  <button className="scroll-btn down">▼</button>
-                </div>
+              
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -112,10 +109,7 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Correctivos FM</h3>
-                <div className="scroll-controls">
-                  <button className="scroll-btn up">▲</button>
-                  <button className="scroll-btn down">▼</button>
-                </div>
+               
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -152,10 +146,7 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Preventivos</h3>
-                <div className="scroll-controls">
-                  <button className="scroll-btn up">▲</button>
-                  <button className="scroll-btn down">▼</button>
-                </div>
+                
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -179,10 +170,7 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Otros</h3>
-                <div className="scroll-controls">
-                  <button className="scroll-btn up">▲</button>
-                  <button className="scroll-btn down">▼</button>
-                </div>
+               
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
