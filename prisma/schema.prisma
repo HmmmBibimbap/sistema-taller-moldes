@@ -1,0 +1,202 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// MODELO: Moldes
+model Molde {
+  id          String @id @default(cuid())
+  codigo      String @unique
+  area        String
+  linea       String
+  descripcion String
+  activo      Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  requerimientos Requerimiento[]
+  
+  @@map("moldes")
+}
+
+// MODELO: Usuarios (Técnicos y Admin)
+model Usuario {
+  id        String @id @default(cuid())
+  username  String @unique
+  password  String
+  nombre    String
+  rol       RolUsuario
+  activo    Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  requerimientosAsignados Requerimiento[] @relation("TecnicoAsignado")
+  historialEstados        HistorialEstado[]
+  
+  @@map("usuarios")
+}
+
+// MODELO: Tipos de Servicio
+model TipoServicio {
+  id          String @id @default(cuid())
+  nombre      String @unique
+  descripcion String?
+  activo      Boolean @default(true)
+  
+  trabajos       TrabajoServicio[]
+  requerimientos Requerimiento[]
+  
+  @@map("tipos_servicio")
+}
+
+// MODELO: Trabajos por Tipo de Servicio
+model TrabajoServicio {
+  id               String @id @default(cuid())
+  nombre           String
+  descripcion      String?
+  tipoServicioId   String
+  activo           Boolean @default(true)
+  
+  tipoServicio   TipoServicio @relation(fields: [tipoServicioId], references: [id])
+  requerimientos Requerimiento[]
+  
+  @@map("trabajos_servicio")
+}
+
+// MODELO: Ubicaciones/Máquinas
+model Ubicacion {
+  id          String @id @default(cuid())
+  nombre      String @unique
+  tipo        TipoUbicacion
+  descripcion String?
+  activo      Boolean @default(true)
+  
+  requerimientos Requerimiento[]
+  
+  @@map("ubicaciones")
+}
+
+// MODELO: Solicitantes
+model Solicitante {
+  id        String @id @default(cuid())
+  nombre    String
+  email     String?
+  puesto    String?
+  activo    Boolean @default(true)
+  createdAt DateTime @default(now())
+  
+  requerimientos Requerimiento[]
+  
+  @@map("solicitantes")
+}
+
+// MODELO: Requerimientos (Principal)
+model Requerimiento {
+  id                String @id @default(cuid())
+  numero            String @unique
+  descripcionTrabajo String
+  estado            EstadoRequerimiento @default(PENDIENTE)
+  prioridad         Int @default(999)
+  piezaMuestra      Boolean @default(false)
+  
+  // Relaciones
+  moldeId         String
+  molde           Molde @relation(fields: [moldeId], references: [id])
+  
+  tipoServicioId  String
+  tipoServicio    TipoServicio @relation(fields: [tipoServicioId], references: [id])
+  
+  trabajoId       String
+  trabajo         TrabajoServicio @relation(fields: [trabajoId], references: [id])
+  
+  ubicacionId     String
+  ubicacion       Ubicacion @relation(fields: [ubicacionId], references: [id])
+  
+  solicitanteId   String
+  solicitante     Solicitante @relation(fields: [solicitanteId], references: [id])
+  
+  tecnicoId       String?
+  tecnico         Usuario? @relation("TecnicoAsignado", fields: [tecnicoId], references: [id])
+  
+  // Fechas
+  fechaCreacion   DateTime @default(now())
+  fechaInicio     DateTime?
+  fechaCompletado DateTime?
+  updatedAt       DateTime @updatedAt
+  
+  // Relaciones secundarias
+  fotos           FotoRequerimiento[]
+  historialEstados HistorialEstado[]
+  
+  @@map("requerimientos")
+}
+
+// MODELO: Fotos de Requerimientos
+model FotoRequerimiento {
+  id              String @id @default(cuid())
+  url             String
+  nombreArchivo   String
+  descripcion     String?
+  tipoFoto        TipoFoto @default(PROBLEMA)
+  tamaño          Int?
+  
+  requerimientoId String
+  requerimiento   Requerimiento @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
+  
+  createdAt       DateTime @default(now())
+  
+  @@map("fotos_requerimientos")
+}
+
+// MODELO: Historial de Estados
+model HistorialEstado {
+  id              String @id @default(cuid())
+  estadoAnterior  EstadoRequerimiento?
+  estadoNuevo     EstadoRequerimiento
+  comentario      String?
+  fecha           DateTime @default(now())
+  
+  requerimientoId String
+  requerimiento   Requerimiento @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
+  
+  usuarioId       String?
+  usuario         Usuario? @relation(fields: [usuarioId], references: [id])
+  
+  @@map("historial_estados")
+}
+
+// ENUMS
+enum RolUsuario {
+  TECNICO
+  ADMIN
+}
+
+enum EstadoRequerimiento {
+  PENDIENTE
+  EN_PROCESO
+  COMPLETADO
+  CANCELADO
+  PAUSADO
+}
+
+enum TipoUbicacion {
+  MAQUINA_80TON
+  MAQUINA_210TON
+  MAQUINA_FM
+  TALLER
+  EXTERNA
+}
+
+enum TipoFoto {
+  PROBLEMA
+  PROCESO
+  SOLUCION
+  PIEZA_MUESTRA
+}
