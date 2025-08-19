@@ -3,8 +3,10 @@ export default function Dashboard() {
     <div className="dashboard">
       <header className="header">
         <div className="header-content">
-          <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
-          <p>Taller de Mantenimiento y Reparación de Moldes</p>
+          <div className="header-left">
+            <span className="menu-icon">☰</span>
+            <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
+          </div>
         </div>
       </header>
 
@@ -15,9 +17,10 @@ export default function Dashboard() {
         <a href="/historial" className="nav-link">Historial</a>
       </nav>
 
-      <main className="main-content">
-       <div className="metrics-grid">
-          <div className="metric-card pending">
+      <main className="main-layout">
+        {/* SIDEBAR IZQUIERDO - MÉTRICAS VERTICALES */}
+        <aside className="metrics-sidebar">
+          <div className="metric-card-vertical pending">
             <div className="metric-icon">⏳</div>
             <div className="metric-info">
               <h3>Pendientes</h3>
@@ -25,7 +28,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="metric-card in-progress">
+          <div className="metric-card-vertical in-progress">
             <div className="metric-icon">🔧</div>
             <div className="metric-info">
               <h3>En Proceso</h3>
@@ -33,7 +36,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="metric-card completed">
+          <div className="metric-card-vertical completed">
             <div className="metric-icon">✅</div>
             <div className="metric-info">
               <h3>Completados Hoy</h3>
@@ -41,25 +44,25 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="metric-card average">
+          <div className="metric-card-vertical average">
             <div className="metric-icon">⏱️</div>
             <div className="metric-info">
               <h3>Tiempo Promedio</h3>
               <span className="metric-number">2.5h</span>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <div className="orders-section">
+        {/* ÁREA PRINCIPAL - 4 COLUMNAS DE ÓRDENES */}
+        <section className="orders-main-area">
           <h2>Órdenes Activas</h2>
           
-          <div className="categories-grid">
+          <div className="orders-grid-wide">
             
             {/* COLUMNA 1: CORRECTIVOS 80 Y 210 TON */}
             <div className="category-column">
               <div className="category-header">
                 <h3>Correctivos 80 y 210 TON</h3>
-              
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -109,7 +112,6 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Correctivos FM</h3>
-               
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -146,7 +148,6 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Preventivos</h3>
-                
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -170,7 +171,6 @@ export default function Dashboard() {
             <div className="category-column">
               <div className="category-header">
                 <h3>Otros</h3>
-               
               </div>
               <div className="orders-scroll-container">
                 <div className="orders-vertical-list">
@@ -191,9 +191,7 @@ export default function Dashboard() {
             </div>
 
           </div>
-        </div>
-
-        
+        </section>
       </main>
     </div>
   )
