@@ -8,7 +8,7 @@ export default function Dashboard() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
-
+  
   return (
    <div className={`dashboard ${darkMode ? 'dark-mode' : ''}`}>
       <header className="header">
