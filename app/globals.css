@@ -571,3 +571,78 @@ body {
   border-color: var(--gray-300);
   color: var(--gray-800);
 }
+
+/* Restaurar colores de íconos en modo oscuro */
+.dark-mode .metric-card-vertical.pending .metric-icon {
+  background-color: #fee2e2; /* Mantener fondo rojo claro */
+}
+
+.dark-mode .metric-card-vertical.in-progress .metric-icon {
+  background-color: #fef3c7; /* Mantener fondo amarillo claro */
+}
+
+.dark-mode .metric-card-vertical.completed .metric-icon {
+  background-color: #d1fae5; /* Mantener fondo verde claro */
+}
+
+.dark-mode .metric-card-vertical.average .metric-icon {
+  background-color: #e0f2fe; /* Mantener fondo azul claro */
+}
+
+/* Restaurar números de colores en modo oscuro */
+.dark-mode .metric-card-vertical.pending .metric-number {
+  color: #ef4444; /* Rojo más brillante para modo oscuro */
+}
+
+.dark-mode .metric-card-vertical.in-progress .metric-number {
+  color: #f59e0b; /* Amarillo más brillante */
+}
+
+.dark-mode .metric-card-vertical.completed .metric-number {
+  color: #10b981; /* Verde más brillante */
+}
+
+.dark-mode .metric-card-vertical.average .metric-number {
+  color: #3b82f6; /* Azul más brillante */
+}
+
+/* Restaurar bordes de colores en tarjetas de órdenes */
+.dark-mode .order-card.priority-high {
+  border-left-color: #ef4444; /* Rojo brillante */
+}
+
+.dark-mode .order-card.priority-medium {
+  border-left-color: #f59e0b; /* Amarillo brillante */
+}
+
+.dark-mode .order-card.priority-low {
+  border-left-color: #10b981; /* Verde brillante */
+}
+
+/* Asegurar que badges mantengan sus colores */
+.dark-mode .priority-badge.high {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.dark-mode .priority-badge.medium {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.dark-mode .priority-badge.low {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+/* Arreglar títulos en modo oscuro */
+.dark-mode .orders-main-area h2 {
+  color: var(--gray-900); /* Texto claro en modo oscuro */
+}
+
+/* También arreglar otros títulos si hay */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+  color: var(--gray-900);
+}
