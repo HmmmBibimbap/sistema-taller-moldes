@@ -91,7 +91,7 @@ export default function Dashboard() {
 
         {/* ÁREA PRINCIPAL - 4 COLUMNAS DE ÓRDENES (80%) */}
         <section className="orders-main-area">
-          <h2>Órdenes Activas</h2>
+          <h2>Requerimientos Abiertos</h2>
           
           <div className="orders-grid-wide">
             
