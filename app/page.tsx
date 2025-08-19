@@ -3,7 +3,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <header className="header">
         <div className="header-content">
-          <h1>Sistema de Órdenes de Trabajo</h1>
+          <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
           <p>Taller de Mantenimiento y Reparación de Moldes</p>
         </div>
       </header>
@@ -16,12 +16,20 @@ export default function Dashboard() {
       </nav>
 
       <main className="main-content">
-        <div className="metrics-grid">
+       <div className="metrics-grid">
           <div className="metric-card pending">
             <div className="metric-icon">⏳</div>
             <div className="metric-info">
               <h3>Pendientes</h3>
               <span className="metric-number">8</span>
+            </div>
+          </div>
+
+          <div className="metric-card in-progress">
+            <div className="metric-icon">🔧</div>
+            <div className="metric-info">
+              <h3>En Proceso</h3>
+              <span className="metric-number">5</span>
             </div>
           </div>
 
@@ -32,10 +40,19 @@ export default function Dashboard() {
               <span className="metric-number">12</span>
             </div>
           </div>
+
+          <div className="metric-card average">
+            <div className="metric-icon">⏱️</div>
+            <div className="metric-info">
+              <h3>Tiempo Promedio</h3>
+              <span className="metric-number">2.5h</span>
+            </div>
+          </div>
         </div>
 
+        
         <div className="orders-section">
-          <h2>Órdenes Activas - Versión Simple</h2>
+          <h2>Requerimientos abiertos</h2>
           <div className="order-card priority-high">
             <div className="order-header">
               <span className="order-number">2024-001</span>
