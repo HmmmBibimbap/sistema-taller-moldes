@@ -418,9 +418,13 @@ body {
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1.5rem;
-  height: 600px; /* Altura fija para todas las columnas */
+  height: 500px; /* Reducido de 600px */
+  max-width: 1400px; /* AMPLIAR EL ANCHO MÁXIMO */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 }
 
 /* Cada columna de categoría */
@@ -438,9 +442,9 @@ body {
 .category-column .category-header {
   background: linear-gradient(135deg, var(--primary-color), #b91c1c);
   color: white;
-  padding: 1rem;
+  padding: 0.75rem 1rem; /* Reducido de 1rem */
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Solo centrar el título */
   align-items: center;
   border-bottom: none;
   margin-bottom: 0;
@@ -455,38 +459,7 @@ body {
   flex: 1;
 }
 
-/* Controles de scroll vertical */
-.scroll-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
 
-.scroll-btn {
-  width: 28px;
-  height: 28px;
-  border: 1px solid white;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.scroll-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.scroll-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
 
 /* Container de scroll para las órdenes */
 .orders-scroll-container {
