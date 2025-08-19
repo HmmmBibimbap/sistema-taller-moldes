@@ -1,40 +1,57 @@
+'use client'
+import { useState } from 'react'
+
 export default function Dashboard() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   return (
     <div className="dashboard">
       <header className="header">
         <div className="header-content">
           <div className="header-left">
-            <button className="menu-toggle">☰</button>
+            <button className="menu-toggle" onClick={toggleMenu}>☰</button>
             <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
           </div>
         </div>
       </header>
 
       {/* MENÚ LATERAL */}
-      <nav className="sidebar-menu">
+      <nav className={`sidebar-menu ${menuOpen ? 'active' : ''}`}>
         <div className="menu-items">
-          <a href="/" className="menu-item active">
+          <a href="/" className="menu-item active" onClick={() => setMenuOpen(false)}>
             <span className="menu-icon">📊</span>
             Dashboard
           </a>
-          <a href="/solicitar" className="menu-item">
+          <a href="/solicitar" className="menu-item" onClick={() => setMenuOpen(false)}>
             <span className="menu-icon">➕</span>
             Solicitar
           </a>
-          <a href="/actualizar" className="menu-item">
+          <a href="/actualizar" className="menu-item" onClick={() => setMenuOpen(false)}>
             <span className="menu-icon">✏️</span>
             Actualizar
           </a>
-          <a href="/historial" className="menu-item">
+          <a href="/historial" className="menu-item" onClick={() => setMenuOpen(false)}>
             <span className="menu-icon">📋</span>
             Historial
           </a>
-          <a href="/reportes" className="menu-item">
+          <a href="/reportes" className="menu-item" onClick={() => setMenuOpen(false)}>
             <span className="menu-icon">📈</span>
             Reportes
           </a>
         </div>
       </nav>
+
+      {/* OVERLAY PARA CERRAR MENÚ */}
+      {menuOpen && (
+        <div 
+          className="menu-overlay" 
+          onClick={() => setMenuOpen(false)}
+        ></div>
+      )}
 
       <main className="main-layout">
         {/* SIDEBAR IZQUIERDO - MÉTRICAS VERTICALES (15%) */}
