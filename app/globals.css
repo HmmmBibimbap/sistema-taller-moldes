@@ -1019,3 +1019,35 @@ body {
     font-size: 1.2rem;
   }
 }
+
+
+/* Arreglar opciones de select en modo oscuro */
+.dark-mode .form-select option {
+  background-color: var(--gray-200) !important;
+  color: var(--gray-900) !important;
+  padding: 0.5rem;
+}
+
+/* Alternativa para mejor compatibilidad */
+.dark-mode .form-select {
+  background-color: var(--gray-100) !important;
+  color: var(--gray-900) !important;
+}
+
+/* Asegurar que el texto seleccionado sea visible */
+.dark-mode .form-select:focus option:checked,
+.dark-mode .form-select option:checked {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Hover en opciones */
+.dark-mode .form-select option:hover {
+  background-color: var(--gray-300) !important;
+  color: var(--gray-900) !important;
+}
+
+/* Para navegadores que soportan color-scheme */
+.dark-mode .form-select {
+  color-scheme: light;
+}
