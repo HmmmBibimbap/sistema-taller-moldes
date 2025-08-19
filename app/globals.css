@@ -854,19 +854,62 @@ body {
   background-color: var(--gray-100);
 }
 
-/* Estados de validación */
+/* Estados de validación - MODO CLARO */
 .form-input:invalid,
 .form-select:invalid,
 .form-textarea:invalid {
-  border-color: #ef4444;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
 }
 
 .form-input:valid,
 .form-select:valid,
 .form-textarea:valid {
-  border-color: #10b981;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
 }
 
+/* Estados de validación - MODO OSCURO */
+.dark-mode .form-input:invalid,
+.dark-mode .form-select:invalid,
+.dark-mode .form-textarea:invalid {
+  border-color: #f87171 !important; /* Rojo más claro y visible */
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2) !important;
+  background-color: rgba(239, 68, 68, 0.05) !important;
+}
+
+.dark-mode .form-input:valid,
+.dark-mode .form-select:valid,
+.dark-mode .form-textarea:valid {
+  border-color: #34d399 !important; /* Verde más claro y visible */
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2) !important;
+  background-color: rgba(16, 185, 129, 0.05) !important;
+}
+
+/* Mejorar el grid de info del molde en modo oscuro */
+.dark-mode .molde-info-grid {
+  background-color: var(--gray-300);
+  border: 2px solid var(--gray-400); /* Borde más visible */
+}
+
+/* Mejorar bordes de campos en modo oscuro */
+.dark-mode .form-input:focus,
+.dark-mode .form-select:focus,
+.dark-mode .form-textarea:focus {
+  border-color: #60a5fa !important; /* Azul más visible */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+
+/* Mejorar contraste de labels en modo oscuro */
+.dark-mode .form-group label {
+  color: #f3f4f6 !important; /* Texto más claro */
+  font-weight: 700; /* Más bold para mejor visibilidad */
+}
+
+.dark-mode .form-group small {
+  color: #d1d5db !important; /* Texto de ayuda más claro */
+}
 /* MODO OSCURO PARA FORMULARIOS */
 .dark-mode .form-container {
   background-color: var(--gray-200);
