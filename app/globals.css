@@ -236,8 +236,9 @@ body {
 .orders-main-area h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  color: var(--gray-900);
+  color: white;
   flex-shrink: 0;
+  text-align: center; /* CENTRADO DEL TEXTO */
 }
 
 /* GRID DE 4 COLUMNAS AMPLIO */
