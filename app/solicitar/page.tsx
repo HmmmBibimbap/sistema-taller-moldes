@@ -70,7 +70,7 @@ export default function Solicitar() {
   ]
 
   // Manejar cambio de molde (auto-llenar campos)
-  const handleMoldeChange = (codigo) => {
+ const handleMoldeChange = (codigo: string) => {
     const moldeSeleccionado = moldes.find(m => m.codigo === codigo)
     if (moldeSeleccionado) {
       setFormData({
