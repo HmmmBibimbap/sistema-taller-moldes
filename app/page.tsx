@@ -3,18 +3,26 @@ import { useState } from 'react'
 
 export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [darkMode, setDarkMode] = useState(false) // MODO OSCURO
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
 
   return (
-    <div className="dashboard">
+   <div className={`dashboard ${darkMode ? 'dark-mode' : ''}`}>
       <header className="header">
         <div className="header-content">
           <div className="header-left">
             <button className="menu-toggle" onClick={toggleMenu}>☰</button>
             <h1>Sistema de Solicitud de Requerimientos de Trabajo</h1>
+            <button 
+              className="dark-mode-toggle" 
+              onClick={() => setDarkMode(!darkMode)}
+              title={darkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
           </div>
         </div>
       </header>
